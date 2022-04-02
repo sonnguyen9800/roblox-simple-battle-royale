@@ -44,6 +44,11 @@ local Define = {
         INTERMISSION_LENGTH = 15,
         ROUND_LENGTH = 300,
         PRIZE_AMOUNG = 100
+    },
+
+
+    WeaponName = {
+        M1911 = "M1911"
     }
 
 }
