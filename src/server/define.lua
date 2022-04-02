@@ -37,9 +37,14 @@ local Define = {
 
     PlayerCharacter = {
         DefaultJumpPower = 50
+    },
+
+    GameRunner = {
+        MIN_PLAYERS = 2,
+        INTERMISSION_LENGTH = 15,
+        ROUND_LENGTH = 300,
+        PRIZE_AMOUNG = 100
     }
-
-
 
 }
 
