@@ -6,11 +6,11 @@ local Define = {
 
     LeaderstartsName = "Stats",
     CoinName = "LuckyGold",
-    StageName = "Trial",
+    KillCounter = "Kills",
     WinCounter = "Win",
     DefaultPlayerData = {
         CoinName = 0,
-        Trial = 1,
+        KillCounter = 1,
         WinCounter = 0
     },
 

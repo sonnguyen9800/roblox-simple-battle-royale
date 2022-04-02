@@ -1,4 +1,4 @@
--- Module Data
+--Module Data
 local playersService = game:GetService("Players")
 local dataStoreService = game:GetService("DataStoreService")
 
@@ -12,23 +12,6 @@ local sessionData = {}
 local dataMod = {};
 
 --Core Functions
-
-dataMod.Load = function(player)
-    local key = player.UserId
-    local data = nil
-    local success, err = pcall(function()
-         data = store:GetAsync(key);
-
-    end)
-
-    if not success then
-        print("Error: "..err.. ". Retry loading.");
-        dataMod.Load(player)
-    end
-    return data;
-end
-
-
 dataMod.SetupData = function(player)
     print("Setup Data: "..player.UserId)
     local key = player.UserId
@@ -51,6 +34,21 @@ dataMod.SetupData = function(player)
         print("Player Name" ..player.Name.. " is a new player");
     end
     
+end
+
+dataMod.Load = function(player)
+    local key = player.UserId
+    local data = nil
+    local success, err = pcall(function()
+         data = store:GetAsync(key);
+
+    end)
+
+    if not success then
+        print("Error: "..err.. ". Retry loading.");
+        dataMod.Load(player)
+    end
+    return data;
 end
 
 dataMod.set = function(player, stats, value)
@@ -96,8 +94,6 @@ dataMod.save = function(player)
     end
 end
 
-
-
 dataMod.removeSessionData = function(player)
     local key = player.UserId
     sessionData[key] = nil
@@ -131,10 +127,16 @@ playersService.PlayerAdded:Connect(function(player)
     coinData.Name = defineModule.CoinName
     coinData.Value = defineModule.DefaultPlayerData.CoinsDefault
 
-    local stageData = Instance.new("IntValue");
-    stageData.Parent = folder
-    stageData.Name = defineModule.StageName
-    stageData.Value = defineModule.DefaultPlayerData.StageDefault
+    local killData = Instance.new("IntValue");
+    killData.Parent = folder
+    killData.Name = defineModule.KillCounter
+    killData.Value = defineModule.DefaultPlayerData.KillCounter
+
+    local winData = Instance.new("IntValue");
+    winData.Parent = folder
+    winData.Name = defineModule.WinCounter
+    winData.Value = defineModule.DefaultPlayerData.WinCounter
+    
 
     dataMod.SetupData(player);
 end)
