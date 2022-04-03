@@ -56,7 +56,7 @@ local Define = {
     WeaponMode = {
         AUTO = "AUTO",
         SEMI = "SEMI"
-    }
+    },
 
     Message = {
         WARN_NOT_ENOUGH_PLAYER = "Number of player required to start the game is:",
