@@ -20,7 +20,12 @@ weaponsModule.playerFromHit = function(hit)
     return player, char
 end
 
-
+-- Verify hit
+local function verifyHit(hit, direction, origin, relCframe, gunSettings)
+    local target = (hit.CFrame).p
+    
+    
+end
 
 
 

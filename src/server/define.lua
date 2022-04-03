@@ -68,8 +68,11 @@ local Define = {
         INFO_ANNOUCE_VICTORS = "The winner is:"
 
 
+    },
+    Security = {
+        SECURITY_ANGLE = 15
     }
-
+    
 }
 
 return Define;

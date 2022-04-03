@@ -35,7 +35,7 @@ end)
 
 local function castRay()
 	local origin = firePoint.Position
-	local direction = (mouse.Hit.p - firePoint.Position).Unit
+	local direction = (mouse.Hit.Position - firePoint.Position).Unit
 	direction = direction * gunSettings.range
 
 	local ray = Ray.new(origin, direction)
