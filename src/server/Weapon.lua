@@ -86,7 +86,14 @@ hitRemote.OnServerEvent:Connect(function(player, weapon, hit, direction, origin,
 end)
 
 
+-- Send damage data from server to client
+replicateRemote.OnServerEvent:Connect(function(player, weapon, origin, target)
+    local length = (target - origin).Magnitude
+    local visualCframe = CFrame.new(origin, target)* CFrame.new(0,0,-length/2)
+    local gunSettings = require(weapon.Settings)
 
+    replicatedStorage.Events.Replicate:FireAllClients(player, gunSettings, visualCframe, length)
+end)
 
 
 
