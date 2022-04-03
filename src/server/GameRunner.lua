@@ -75,7 +75,7 @@ end
 gameRunner.gameLoop = function()
     while task.wait(0.5) do
         if #playerService:GetPlayers()< defineModule.GameRunner.MIN_PLAYERS then
-            message.Value = "There must be "..defineModule.GameRunner.MIN_PLAYERS.. " players to start"
+            message.Value = defineModule.Message.WARN_NOT_ENOUGH_PLAYER.. " "..defineModule.GameRunner.MIN_PLAYERS
         else
             local intermission = defineModule.GameRunner.INTERMISSION_LENGTH
             repeat
@@ -84,7 +84,7 @@ gameRunner.gameLoop = function()
 
             until intermission == 0
             
-            message.Value = "Get Ready for the game"
+            message.Value = defineModule.Message.WARN_GAME_GET_READY
             task.wait(2)
             addPlayersToTable()
             spawnPlayers();
@@ -93,8 +93,8 @@ gameRunner.gameLoop = function()
             local gameTime = defineModule.GameRunner.ROUND_LENGTH
 
             repeat
-                message.Value = "Time Remaining" .. gameTime
-                remaining.Value = #competitors.. " remaining"
+                message.Value = defineModule.Message.WARN_TIME_REMANING .. gameTime
+                remaining.Value = #competitors.. " "..defineModule.Message.INFO_PEOPLE_REMAINING
                 gameTime = gameTime - 1
                 task.wait(1)
 
@@ -103,13 +103,15 @@ gameRunner.gameLoop = function()
             loadAllPlayers()
             remaining.Value = ""
             if gameTime == 0 or #competitors == 0 then
-                message.Value = "There were no victors"
+                message.Value = defineModule.Message.INFO_NO_VICTORS
             else
                 local winner = competitors[1]
                 dataModule.increment(winner, defineModule.WinCounter, 1)
                 dataModule.increment(winner, defineModule.CoinName, defineModule.GameRunner.PRIZE_AMOUNG)
+                message.Value = defineModule.Message.INFO_ANNOUCE_VICTORS .. " "..winner.Name
             end
-             
+             competitors = {}
+             task.wait(5)
         end
     end
 end

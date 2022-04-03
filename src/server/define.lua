@@ -51,6 +51,18 @@ local Define = {
 
     WeaponName = {
         M1911 = "M1911"
+    },
+
+    Message = {
+        WARN_NOT_ENOUGH_PLAYER = "Number of player required to start the game is:",
+        WARN_GAME_GET_READY = "Get ready for the game",
+        WARN_TIME_REMANING = "Time Remaning: ",
+        
+        INFO_PEOPLE_REMAINING = " remaining",
+        INFO_NO_VICTORS = "There is no winner in this game",
+        INFO_ANNOUCE_VICTORS = "The winner is:"
+
+
     }
 
 }
