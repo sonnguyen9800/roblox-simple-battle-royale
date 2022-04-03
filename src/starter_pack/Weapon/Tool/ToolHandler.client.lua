@@ -18,8 +18,9 @@ local equipped = false;
 
 local ignoreList = {char, workspace.Effects}
 local debrisService = game:GetService("Debris")
+local doFire = false
 
--- Equip Detection
+--#region Connect & Equip
 tool.Equipped:Connect(function()
     equipped = true;
 end)
@@ -27,7 +28,9 @@ end)
 tool.Unequipped:Connect(function()
     equipped = false;
 end)
+--#endregion
 
+--#region Local
 
 local function castRay()
 	local origin = firePoint.Position
@@ -73,9 +76,6 @@ local function gunEffects()
 	end
 end
 
-
-local doFire = false
-
 local function fire()
 	local waitTime = 60/gunSettings.rateOfFire
 
@@ -83,7 +83,7 @@ local function fire()
 		if equipped and not tool.Debounce.Value then
 			tool.Debounce.Value = true
 
-			delay(waitTime, function()
+			task.delay(waitTime, function()
 				tool.Debounce.Value = false
 			end)
 
@@ -99,8 +99,9 @@ local function fire()
 
 	until not equipped or not doFire or gunSettings.fireMode ~= "AUTO"
 end
+--#endregion
 
-
+--#region Mouse Interaction
 mouse.Button1Down:Connect(function()
 	doFire = true
 	if char.Humanoid.Health > 0 then
@@ -112,3 +113,4 @@ mouse.Button1Up:Connect(function()
 	doFire = false
 end)
 
+--#endregion
