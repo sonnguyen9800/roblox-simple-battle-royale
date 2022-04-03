@@ -43,7 +43,9 @@ local Define = {
         MIN_PLAYERS = 2,
         INTERMISSION_LENGTH = 15,
         ROUND_LENGTH = 300,
-        PRIZE_AMOUNG = 100
+        PRIZE_AMOUNG = 100,
+
+        NUM_SPAWN_POINT = 4
     },
 
 
