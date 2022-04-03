@@ -22,7 +22,11 @@
         }
       }
     },
+    "StarterPack" : {
+      "$className": "StarterPack",
+      "$path": "src/starter_pack"
 
+    },
     "Workspace": {
       "$properties": {
         "FilteringEnabled": true

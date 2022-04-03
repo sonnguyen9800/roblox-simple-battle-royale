@@ -53,6 +53,11 @@ local Define = {
         M1911 = "M1911"
     },
 
+    WeaponMode = {
+        AUTO = "AUTO",
+        SEMI = "SEMI"
+    }
+
     Message = {
         WARN_NOT_ENOUGH_PLAYER = "Number of player required to start the game is:",
         WARN_GAME_GET_READY = "Get ready for the game",
