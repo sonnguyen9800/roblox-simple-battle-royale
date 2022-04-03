@@ -102,6 +102,11 @@ local function fire()
 end
 --#endregion
 
+
+
+
+
+
 --#region Mouse Interaction
 mouse.Button1Down:Connect(function()
 	doFire = true
