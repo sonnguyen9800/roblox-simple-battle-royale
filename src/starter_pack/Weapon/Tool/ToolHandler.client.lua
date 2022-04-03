@@ -1,6 +1,7 @@
 local playersService = game:GetService("Players")
 local replicatedStorage = game:GetService("ReplicatedStorage")
 
+local defineModule = require(game.ServerScriptService.Server.Define)
 local replicateRemote = replicatedStorage.Events.Replicate;
 local hitRemote = replicatedStorage.Events.Hit;
 
@@ -97,7 +98,7 @@ local function fire()
 		end
 		task.wait(waitTime)
 
-	until not equipped or not doFire or gunSettings.fireMode ~= "AUTO"
+	until not equipped or not doFire or gunSettings.fireMode ~= defineModule.WeaponMode.AUTO
 end
 --#endregion
 
