@@ -56,7 +56,7 @@ local function castRay()
 	visual.Size = Vector3.new(gunSettings.raySize.X, gunSettings.raySize.Y, length)
 	visual.CFrame = CFrame.new(origin, pos) * CFrame.new(0,0,-length/2)
 	visual.Parent = workspace.Effects
-	debris:AddItem(visual, gunSettings.debrisTime)
+	debrisService:AddItem(visual, gunSettings.debrisTime)
 
 	return hit, pos, direction, origin
 end
@@ -95,7 +95,7 @@ local function fire()
 				hitRemote:FireServer(tool, hit, direction, origin, relCFrame)
 			end			
 		end
-		wait(waitTime)
+		task.wait(waitTime)
 
 	until not equipped or not doFire or gunSettings.fireMode ~= "AUTO"
 end
