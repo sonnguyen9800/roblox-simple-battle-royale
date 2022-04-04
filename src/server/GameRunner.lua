@@ -3,7 +3,7 @@ local replicatedStorage = game:GetService("ReplicatedStorage")
 
 local dataModule = require(script.Parent.Data)
 local defineModule = require(script.Parent.Define)
-
+local lootModule = require(script.Parent.Loot)
 local random = Random.new()
 local message = replicatedStorage.Message;
 local remaining = replicatedStorage.Remaining;
@@ -11,6 +11,14 @@ local remaining = replicatedStorage.Remaining;
 local gameRunner = {}
 local competitors = {}
 
+
+local getCompetitors = replicatedStorage.Events.GetCompetitors
+local updateCompetitors = replicatedStorage.Events.UpdateCompetitors
+
+
+getCompetitors.OnServerInvoke = function()
+    return competitors
+end
 
 --Local Functions
 local function getPlayerIntable(player)
@@ -25,6 +33,7 @@ local function removePlayerIntable(player)
     local index, _ = getPlayerIntable(player)
     if index then
         table.remove(competitors, index)
+        updateCompetitors:FireAllClients(competitors)
     end
 end
 
@@ -75,6 +84,7 @@ end
 gameRunner.gameLoop = function()
     while task.wait(0.5) do
         if #playerService:GetPlayers()< defineModule.GameRunner.MIN_PLAYERS then
+            print("not enough player")
             message.Value = defineModule.Message.WARN_NOT_ENOUGH_PLAYER.. " "..defineModule.GameRunner.MIN_PLAYERS
         else
             local intermission = defineModule.GameRunner.INTERMISSION_LENGTH
@@ -88,8 +98,8 @@ gameRunner.gameLoop = function()
             task.wait(2)
             addPlayersToTable()
             spawnPlayers();
-
-
+            lootModule.spawnWeapons()
+            updateCompetitors:FireAllClients(competitors)
             local gameTime = defineModule.GameRunner.ROUND_LENGTH
 
             repeat
@@ -111,6 +121,7 @@ gameRunner.gameLoop = function()
                 message.Value = defineModule.Message.INFO_ANNOUCE_VICTORS .. " "..winner.Name
             end
              competitors = {}
+             updateCompetitors:FireAllClients(competitors)
              task.wait(5)
         end
     end
@@ -121,6 +132,13 @@ playerService.PlayerMembershipChanged:Connect(function(player)
     removePlayerIntable(player);
 
 end)
+
+playerService.PlayerRemoving:Connect(function(player)
+    removePlayerIntable(player)
+end)
+
+
+-- Run Game Loop
 
 
 
