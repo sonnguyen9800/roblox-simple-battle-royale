@@ -19,7 +19,9 @@ dataMod.SetupData = function(player)
 
     local defaultData = {}
     defaultData[defineModule.CoinName] = 0;
-    defaultData[defineModule.StageName] = 1;
+    defaultData[defineModule.KillCounter] = 0;
+    defaultData[defineModule.WinCounter] = 0;
+
     sessionData[key] = dataMod.recursiveCopy(defaultData);
 
     if (data) then
