@@ -124,8 +124,7 @@ end)
 
 
 
-
-
+task.spawn(gameRunner.gameLoop())
 
 
 return gameRunner
