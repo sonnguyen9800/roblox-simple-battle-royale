@@ -50,7 +50,7 @@ end)
 spectateModule.toggleSpectate = function()
 	if not spectating then
 		spectating = true
-		spectateModule.getCompetitors()
+		spectateModule.getCompetitorsRemoteFunction()
 		spectateFrame.Visible = true
 		local targetPlayer = competitors[1]
 		spectateModule.focusCamera(targetPlayer)
@@ -83,7 +83,7 @@ toggle.MouseButton1Click:Connect(function()
 end)
 
 nextPlayer.MouseButton1Click:Connect(function()
-    spectateModule.getCompetitors()
+    spectateModule.getCompetitorsRemoteFunction()
     curIndex = curIndex + 1
 
     if curIndex > #competitors then
@@ -95,7 +95,7 @@ nextPlayer.MouseButton1Click:Connect(function()
 end)
 
 lastPlayer.MouseButton1Click:Connect(function()
-    spectateModule.getCompetitors()
+    spectateModule.getCompetitorsRemoteFunction()
     curIndex = curIndex - 1
 
     if curIndex < 1 then
